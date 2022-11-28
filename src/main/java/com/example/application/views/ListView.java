@@ -18,6 +18,7 @@ import javax.annotation.security.PermitAll;
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Customers | Mila Library")
 public class ListView extends VerticalLayout {
+
     Grid<Customer> grid = new Grid<>(Customer.class);
     TextField filterText = new TextField();
     CustomerForm customerForm;

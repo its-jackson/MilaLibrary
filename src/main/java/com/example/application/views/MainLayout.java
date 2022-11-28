@@ -12,6 +12,7 @@ import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
 
 public class MainLayout extends AppLayout {
+
     private final SecurityService securityService;
 
     public MainLayout(SecurityService securityService) {

@@ -16,6 +16,7 @@ import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.shared.Registration;
 
 public class CustomerForm extends FormLayout {
+
     private Customer customer;
 
     TextField firstName = new TextField("First name");

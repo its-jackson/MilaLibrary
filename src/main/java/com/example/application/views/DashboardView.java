@@ -17,6 +17,7 @@ import javax.annotation.security.PermitAll;
 @Route(value = "dashboard", layout = MainLayout.class)
 @PageTitle("Dashboard | Mila Library")
 public class DashboardView extends VerticalLayout {
+
     private final CRMService service;
 
     public DashboardView(CRMService service) {

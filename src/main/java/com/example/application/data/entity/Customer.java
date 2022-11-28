@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 public class Customer extends AbstractEntity {
+
     @OneToMany(mappedBy = "customer")
     @Nullable
     private final List<Status> statuses = new LinkedList<>();
