@@ -1,7 +1,9 @@
-package com.example.application.views.list;
+package com.example.application.views;
 
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.login.LoginForm;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
@@ -13,18 +15,23 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 @PageTitle("Login | Mila Library")
 @AnonymousAllowed
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
-
 	private final LoginForm login = new LoginForm(); 
 
-	public LoginView(){
+	public LoginView() {
 		addClassName("login-view");
 		setSizeFull(); 
 		setAlignItems(Alignment.CENTER);
 		setJustifyContentMode(JustifyContentMode.CENTER);
+		setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        getStyle().set("text-align", "center");
 
-		login.setAction("login"); 
+		login.setAction("login");
 
-		add(new H1("Mila Library"), login);
+		Image img = new Image("images/empty-plant.png", "placeholder plant");
+        img.setWidth("200px");
+		add(new HorizontalLayout(img, new H1("Mila Library")));
+
+		add(login);
 	}
 
 	@Override

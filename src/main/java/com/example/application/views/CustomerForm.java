@@ -1,4 +1,4 @@
-package com.example.application.views.list;
+package com.example.application.views;
 
 import com.example.application.data.entity.Customer;
 import com.vaadin.flow.component.ComponentEvent;
@@ -53,7 +53,7 @@ public class CustomerForm extends FormLayout {
         return new HorizontalLayout(save, delete, close);
     }
 
-    public void setContact(Customer customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
         binder.readBean(customer);
     }
@@ -68,10 +68,10 @@ public class CustomerForm extends FormLayout {
     }
 
     // Events
-    public static abstract class ContactFormEvent extends ComponentEvent<CustomerForm> {
+    public static abstract class CustomerFormEvent extends ComponentEvent<CustomerForm> {
         private final Customer customer;
 
-        protected ContactFormEvent(CustomerForm source, Customer customer) {
+        protected CustomerFormEvent(CustomerForm source, Customer customer) {
             super(source, false);
             this.customer = customer;
         }
@@ -81,20 +81,20 @@ public class CustomerForm extends FormLayout {
         }
     }
 
-    public static class SaveEvent extends ContactFormEvent {
+    public static class SaveEvent extends CustomerFormEvent {
         SaveEvent(CustomerForm source, Customer customer) {
             super(source, customer);
         }
     }
 
-    public static class DeleteEvent extends ContactFormEvent {
+    public static class DeleteEvent extends CustomerFormEvent {
         DeleteEvent(CustomerForm source, Customer customer) {
             super(source, customer);
         }
 
     }
 
-    public static class CloseEvent extends ContactFormEvent {
+    public static class CloseEvent extends CustomerFormEvent {
         CloseEvent(CustomerForm source) {
             super(source, null);
         }

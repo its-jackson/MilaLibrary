@@ -34,7 +34,7 @@ public class CRMService {
 
     public void saveCustomer(Customer customer) {
         if (customer == null) {
-            System.err.println("Contact is null. Are you sure you have connected your form to the application?");
+            System.err.println("Customer is null. Are you sure you have connected your form to the application?");
             return;
         }
         customerRepository.save(customer);

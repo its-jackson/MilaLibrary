@@ -9,15 +9,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-enum BookState {
-    CHECK_IN("Check-in"),
-    CHECK_OUT("Check-out");
-
-    BookState(String s) {
-
-    }
-}
-
 @Entity
 public class Status extends AbstractEntity {
 
@@ -38,7 +29,7 @@ public class Status extends AbstractEntity {
 
     @NotNull
     @NotEmpty
-    private BookState bookState;
+    private Status.State state;
 
     public Status() {
 
@@ -68,11 +59,20 @@ public class Status extends AbstractEntity {
         this.date = date;
     }
 
-    public BookState getBookState() {
-        return bookState;
+    public State getBookState() {
+        return state;
     }
 
-    public void setBookState(BookState bookState) {
-        this.bookState = bookState;
+    public void setBookState(State state) {
+        this.state = state;
+    }
+
+    enum State {
+        CHECK_IN("Check-in"),
+        CHECK_OUT("Check-out");
+
+        State(String s) {
+
+        }
     }
 }

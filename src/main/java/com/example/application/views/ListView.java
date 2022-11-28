@@ -1,4 +1,4 @@
-package com.example.application.views.list;
+package com.example.application.views;
 
 import com.example.application.data.entity.Customer;
 import com.example.application.data.service.CRMService;
@@ -20,13 +20,11 @@ import javax.annotation.security.PermitAll;
 public class ListView extends VerticalLayout {
     Grid<Customer> grid = new Grid<>(Customer.class);
     TextField filterText = new TextField();
-
     CustomerForm customerForm;
+    CRMService service;
 
-    CRMService crmService;
-
-    public ListView(CRMService crmService) {
-        this.crmService = crmService;
+    public ListView(CRMService service) {
+        this.service = service;
         addClassName("list-view");
         setSizeFull();
         configureGrid();
@@ -55,13 +53,13 @@ public class ListView extends VerticalLayout {
     }
 
     private void saveCustomer(CustomerForm.SaveEvent event) {
-        crmService.saveCustomer(event.getContact());
+        service.saveCustomer(event.getContact());
         updateList();
         closeEditor();
     }
 
     private void deleteCustomer(CustomerForm.DeleteEvent event) {
-        crmService.deleteCustomer(event.getContact());
+        service.deleteCustomer(event.getContact());
         updateList();
         closeEditor();
     }
@@ -94,14 +92,14 @@ public class ListView extends VerticalLayout {
             closeEditor();
         }
         else {
-            customerForm.setContact(customer);
+            customerForm.setCustomer(customer);
             customerForm.setVisible(true);
             addClassName("Editing");
         }
     }
 
     private void closeEditor() {
-        customerForm.setContact(null);
+        customerForm.setCustomer(null);
         customerForm.setVisible(false);
         removeClassName("Editing");
     }
@@ -115,6 +113,6 @@ public class ListView extends VerticalLayout {
      * Sets the grid items by calling the service with the value from the filter text field.
      */
     private void updateList() {
-        grid.setItems(crmService.findAllCustomers(filterText.getValue()));
+        grid.setItems(service.findAllCustomers(filterText.getValue()));
     }
 }

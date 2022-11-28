@@ -1,4 +1,4 @@
-package com.example.application.views.list;
+package com.example.application.views;
 
 import com.example.application.security.SecurityService;
 import com.vaadin.flow.component.applayout.AppLayout;
