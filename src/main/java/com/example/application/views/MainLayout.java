@@ -58,8 +58,11 @@ public class MainLayout extends AppLayout {
 
     private void createHeader() {
         H1 logo = new H1("Mila Library");
-        logo.getStyle().set("font-size", "var(--lumo-font-size-l)")
+
+        logo.getStyle()
+                .set("font-size", "var(--lumo-font-size-l)")
                 .set("margin", "0");
+
         logo.addClassNames("text-l", "m-m");
 
         Button logout = new Button("Log out", e -> securityService.logout());
