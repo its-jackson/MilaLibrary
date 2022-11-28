@@ -18,11 +18,10 @@ public class CRMService {
     }
 
     public List<Customer> findAllCustomers(String stringFilter) {
-        if (stringFilter == null || stringFilter.isEmpty()) {
+        if (stringFilter == null || stringFilter.isEmpty())
             return customerRepository.findAll();
-        } else {
+        else
             return customerRepository.search(stringFilter);
-        }
     }
 
     public long countCustomers() {

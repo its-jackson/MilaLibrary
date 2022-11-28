@@ -42,10 +42,9 @@ public class DashboardView extends VerticalLayout {
                 .forEach(customer ->
                         dataSeries.add(
                                 new DataSeriesItem(
-                                        customer.getFirstName()
-                                                .concat(" ")
-                                                .concat(customer.getLastName()),
-                                        service.countCustomers())
+                                        customer.getFirstName().concat(" ").concat(customer.getLastName()),
+                                        service.countCustomers()
+                                )
                         )
                 );
 

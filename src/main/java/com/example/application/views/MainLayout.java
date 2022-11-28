@@ -38,7 +38,11 @@ public class MainLayout extends AppLayout {
         return tabs;
     }
 
-    private Tab createTab(VaadinIcon viewIcon, String viewName, Class<? extends Component> navigationTarget) {
+    private Tab createTab(
+            VaadinIcon viewIcon,
+            String viewName,
+            Class<? extends Component> navigationTarget
+    ) {
         Icon icon = viewIcon.create();
         icon.getStyle().set("box-sizing", "border-box")
                 .set("margin-inline-end", "var(--lumo-space-m)")

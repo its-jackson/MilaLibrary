@@ -17,19 +17,16 @@ import com.vaadin.flow.shared.Registration;
 
 public class CustomerForm extends FormLayout {
 
-    private Customer customer;
-
     TextField firstName = new TextField("First name");
     TextField lastName = new TextField("Last name");
     TextField address = new TextField("Address");
     TextField phone = new TextField("Phone");
     EmailField email = new EmailField("Email");
-
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
-
     Binder<Customer> binder = new BeanValidationBinder<>(Customer.class);
+    private Customer customer;
 
     public CustomerForm() {
         addClassName("customer-form");
@@ -68,6 +65,13 @@ public class CustomerForm extends FormLayout {
         }
     }
 
+    public <T extends ComponentEvent<?>> Registration addListener(
+            Class<T> eventType,
+            ComponentEventListener<T> listener
+    ) {
+        return getEventBus().addListener(eventType, listener);
+    }
+
     // Events
     public static abstract class CustomerFormEvent extends ComponentEvent<CustomerForm> {
         private final Customer customer;
@@ -77,7 +81,7 @@ public class CustomerForm extends FormLayout {
             this.customer = customer;
         }
 
-        public Customer getContact() {
+        public Customer getCustomer() {
             return customer;
         }
     }
@@ -92,17 +96,11 @@ public class CustomerForm extends FormLayout {
         DeleteEvent(CustomerForm source, Customer customer) {
             super(source, customer);
         }
-
     }
 
     public static class CloseEvent extends CustomerFormEvent {
         CloseEvent(CustomerForm source) {
             super(source, null);
         }
-    }
-
-    public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,
-                                                                  ComponentEventListener<T> listener) {
-        return getEventBus().addListener(eventType, listener);
     }
 }

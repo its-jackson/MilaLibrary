@@ -54,13 +54,13 @@ public class ListView extends VerticalLayout {
     }
 
     private void saveCustomer(CustomerForm.SaveEvent event) {
-        service.saveCustomer(event.getContact());
+        service.saveCustomer(event.getCustomer());
         updateList();
         closeEditor();
     }
 
     private void deleteCustomer(CustomerForm.DeleteEvent event) {
-        service.deleteCustomer(event.getContact());
+        service.deleteCustomer(event.getCustomer());
         updateList();
         closeEditor();
     }
@@ -91,8 +91,7 @@ public class ListView extends VerticalLayout {
     public void editCustomer(Customer customer) {
         if (customer == null) {
             closeEditor();
-        }
-        else {
+        } else {
             customerForm.setCustomer(customer);
             customerForm.setVisible(true);
             addClassName("Editing");

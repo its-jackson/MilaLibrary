@@ -10,21 +10,17 @@ import java.util.List;
 
 @Entity
 public class Book extends AbstractEntity {
-    @NotBlank
-    private String title;
-
-    @NotBlank
-    private String authorFirstName;
-
-    @NotBlank
-    private String authorLastName;
-
-    @Size(min = 1, max = 5)
-    private int rating;
-
     @OneToMany(mappedBy = "book")
     @Nullable
     private final List<Status> statuses = new LinkedList<>();
+    @NotBlank
+    private String title;
+    @NotBlank
+    private String authorFirstName;
+    @NotBlank
+    private String authorLastName;
+    @Size(min = 1, max = 5)
+    private int rating;
 
     public Book() {
 
