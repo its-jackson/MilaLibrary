@@ -14,7 +14,7 @@ import com.vaadin.flow.router.Route;
 import javax.annotation.security.PermitAll;
 
 @PermitAll
-@Route(value = "dashboard", layout = MainLayout.class)
+@Route(value = "", layout = MainLayout.class)
 @PageTitle("Dashboard | Mila Library")
 public class DashboardView extends VerticalLayout {
 
@@ -49,6 +49,12 @@ public class DashboardView extends VerticalLayout {
                 );
 
         chart.getConfiguration().setSeries(dataSeries);
+        return chart;
+    }
+
+    private Chart getBookChart() {
+        Chart chart = new Chart(ChartType.PIE);
+
         return chart;
     }
 }

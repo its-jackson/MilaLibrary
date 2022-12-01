@@ -1,6 +1,8 @@
 package com.example.application.data.service;
 
+import com.example.application.data.entity.Book;
 import com.example.application.data.entity.Customer;
+import com.example.application.data.repository.IBookRepository;
 import com.example.application.data.repository.ICustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +12,14 @@ import java.util.List;
 public class CRMService {
 
     private final ICustomerRepository customerRepository;
+    private final IBookRepository bookRepository;
 
     public CRMService(
-            ICustomerRepository customerRepository
+            ICustomerRepository customerRepository,
+            IBookRepository bookRepository
     ) {
         this.customerRepository = customerRepository;
+        this.bookRepository = bookRepository;
     }
 
     public List<Customer> findAllCustomers(String stringFilter) {
@@ -33,10 +38,23 @@ public class CRMService {
     }
 
     public void saveCustomer(Customer customer) {
-        if (customer == null) {
-            System.err.println("Customer is null. Are you sure you have connected your form to the application?");
-            return;
-        }
+        if (customer == null) return;
         customerRepository.save(customer);
+    }
+
+    public List<Book> findAllBooks(String stringFilter) {
+        if (stringFilter == null || stringFilter.isEmpty())
+            return bookRepository.findAll();
+        else
+            return bookRepository.search(stringFilter);
+    }
+
+    public void deleteBook(Book book) {
+        bookRepository.delete(book);
+    }
+
+    public void saveBook(Book book) {
+        if (book == null) return;
+        bookRepository.save(book);
     }
 }

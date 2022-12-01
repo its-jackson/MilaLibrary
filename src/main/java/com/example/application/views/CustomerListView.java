@@ -15,18 +15,18 @@ import com.vaadin.flow.router.Route;
 import javax.annotation.security.PermitAll;
 
 @PermitAll
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "customers", layout = MainLayout.class)
 @PageTitle("Customers | Mila Library")
-public class ListView extends VerticalLayout {
+public class CustomerListView extends VerticalLayout {
 
     Grid<Customer> grid = new Grid<>(Customer.class);
     TextField filterText = new TextField();
     CustomerForm customerForm;
     CRMService service;
 
-    public ListView(CRMService service) {
+    public CustomerListView(CRMService service) {
         this.service = service;
-        addClassName("list-view");
+        addClassName("customer-list-view");
         setSizeFull();
         configureGrid();
         configureForm();
@@ -40,7 +40,7 @@ public class ListView extends VerticalLayout {
         HorizontalLayout content = new HorizontalLayout(grid, customerForm);
         content.setFlexGrow(2, grid);
         content.setFlexGrow(1, customerForm);
-        content.addClassName("content");
+        content.addClassName("customer-content");
         content.setSizeFull();
         return content;
     }
@@ -75,7 +75,8 @@ public class ListView extends VerticalLayout {
     }
 
     private HorizontalLayout getToolbar() {
-        filterText.setPlaceholder("Filter by name...");
+        filterText.setPlaceholder("Filter by customer name");
+        filterText.setWidth("15em");
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
         filterText.addValueChangeListener(e -> updateList()); // update the contacts any time the filter changes
@@ -84,7 +85,7 @@ public class ListView extends VerticalLayout {
         addContactButton.addClickListener(click -> addCustomer());
 
         HorizontalLayout toolbar = new HorizontalLayout(filterText, addContactButton);
-        toolbar.addClassName("toolbar");
+        toolbar.addClassName("customer-toolbar");
         return toolbar;
     }
 
@@ -94,14 +95,14 @@ public class ListView extends VerticalLayout {
         } else {
             customerForm.setCustomer(customer);
             customerForm.setVisible(true);
-            addClassName("Editing");
+            addClassName("Customer-Editing");
         }
     }
 
     private void closeEditor() {
         customerForm.setCustomer(null);
         customerForm.setVisible(false);
-        removeClassName("Editing");
+        removeClassName("Customer-Editing");
     }
 
     private void addCustomer() {

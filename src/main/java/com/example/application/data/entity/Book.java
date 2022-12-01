@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class Book extends AbstractEntity {
     private String authorFirstName;
     @NotBlank
     private String authorLastName;
-    @Size(min = 1, max = 5)
+
     private int rating;
 
     public Book() {
