@@ -2,8 +2,10 @@ package com.example.application.data.service;
 
 import com.example.application.data.entity.Book;
 import com.example.application.data.entity.Customer;
+import com.example.application.data.entity.Log;
 import com.example.application.data.repository.IBookRepository;
 import com.example.application.data.repository.ICustomerRepository;
+import com.example.application.data.repository.ILogRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +15,16 @@ public class CRMService {
 
     private final ICustomerRepository customerRepository;
     private final IBookRepository bookRepository;
+    private final ILogRepository logRepository;
 
     public CRMService(
             ICustomerRepository customerRepository,
-            IBookRepository bookRepository
+            IBookRepository bookRepository,
+            ILogRepository logRepository
     ) {
         this.customerRepository = customerRepository;
         this.bookRepository = bookRepository;
+        this.logRepository = logRepository;
     }
 
     public List<Customer> findAllCustomers(String stringFilter) {
@@ -49,6 +54,10 @@ public class CRMService {
             return bookRepository.search(stringFilter);
     }
 
+    public long countBooks() {
+        return bookRepository.count();
+    }
+
     public void deleteBook(Book book) {
         bookRepository.delete(book);
     }
@@ -56,5 +65,22 @@ public class CRMService {
     public void saveBook(Book book) {
         if (book == null) return;
         bookRepository.save(book);
+    }
+
+    public List<Log> findAllLogs() {
+        return logRepository.findAll();
+    }
+
+    public long countLogs() {
+        return logRepository.count();
+    }
+
+    public void deleteLog(Log log) {
+        logRepository.delete(log);
+    }
+
+    public void saveLog(Log log) {
+        if (log == null) return;
+        logRepository.save(log);
     }
 }

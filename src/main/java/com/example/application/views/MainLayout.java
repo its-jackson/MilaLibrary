@@ -31,8 +31,8 @@ public class MainLayout extends AppLayout {
         tabs.add(
                 createTab(VaadinIcon.DASHBOARD, "Dashboard", DashboardView.class),
                 createTab(VaadinIcon.USER_HEART, "Customers", CustomerListView.class),
-                createTab(VaadinIcon.RECORDS, "Books", BookListView.class)
-                //createTab(VaadinIcon.CHART, "Analytics")
+                createTab(VaadinIcon.RECORDS, "Books", BookListView.class),
+                createTab(VaadinIcon.CHART, "Logs", LogListView.class)
         );
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         return tabs;

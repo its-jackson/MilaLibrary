@@ -24,7 +24,12 @@ public class DashboardView extends VerticalLayout {
         this.service = service;
         addClassName("dashboard-view");
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        add(getCustomerStats(), getCustomerChart());
+        add(getCustomerStats(),
+                getCustomerChart(),
+                getBookStats(),
+                getBookChart(),
+                getLogStats(),
+                getLogChart());
     }
 
     private Component getCustomerStats() {
@@ -52,9 +57,53 @@ public class DashboardView extends VerticalLayout {
         return chart;
     }
 
+    private Component getBookStats() {
+        Span stats = new Span(service.countBooks() + " books");
+        stats.addClassNames("text-xl", "mt-m");
+        return stats;
+    }
+
     private Chart getBookChart() {
         Chart chart = new Chart(ChartType.PIE);
 
+        DataSeries dataSeries = new DataSeries();
+
+        service.findAllBooks("")
+                .forEach(book ->
+                        dataSeries.add(
+                                new DataSeriesItem(
+                                        book.getTitle(),
+                                        service.countBooks()
+                                )
+                        )
+                );
+
+        chart.getConfiguration().setSeries(dataSeries);
+        return chart;
+    }
+
+    private Component getLogStats() {
+        Span stats = new Span(service.countLogs() + " logs");
+        stats.addClassNames("text-xl", "mt-m");
+        return stats;
+    }
+
+    private Chart getLogChart() {
+        Chart chart = new Chart(ChartType.PIE);
+
+        DataSeries dataSeries = new DataSeries();
+
+        service.findAllLogs()
+                .forEach(log ->
+                        dataSeries.add(
+                                new DataSeriesItem(
+                                        log.getState(),
+                                        service.countLogs()
+                                )
+                        )
+                );
+
+        chart.getConfiguration().setSeries(dataSeries);
         return chart;
     }
 }
